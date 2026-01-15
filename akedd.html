@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html class="dark" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>إنشاء عقد بيع - معرض الفخامة</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans+Arabic:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00d4ff",
+                        "background-light": "#f2f2f3",
+                        "background-dark": "#0f0f1a",
+                        "glass-border": "rgba(255, 255, 255, 0.1)",
+                        "glass-bg": "rgba(255, 255, 255, 0.03)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "Noto Sans Arabic", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        :root {
+            --sidebar-width: 18rem;
+            --sidebar-collapsed-width: 5rem;
+        }
+        body {
+            font-family: 'Space Grotesk', 'Noto Sans Arabic', sans-serif;
+            background-color: #0f0f1a;
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(0, 212, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(123, 31, 162, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(15, 15, 26, 1) 0%, rgba(15, 15, 26, 1) 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav {
+            background: linear-gradient(90deg, rgba(0, 212, 255, 0.15) 0%, transparent 100%);
+            border-right: 3px solid #00d4ff;
+        }
+        #sidebar-toggle { display: none; }
+        #sidebar-toggle:checked ~ .flex aside { width: var(--sidebar-collapsed-width); }
+        #sidebar-toggle:checked ~ .flex aside .logo-text,
+        #sidebar-toggle:checked ~ .flex aside .nav-label,
+        #sidebar-toggle:checked ~ .flex aside .logout-text { display: none; }
+        #sidebar-toggle:checked ~ .flex aside .logo-container { justify-content: center; padding-left: 0; padding-right: 0; }
+        #sidebar-toggle:checked ~ .flex aside nav a { justify-content: center; padding-left: 0; padding-right: 0; }
+        #sidebar-toggle:checked ~ .flex aside .logout-btn { justify-content: center; }
+        #sidebar-toggle:checked ~ .flex .toggle-icon { transform: rotate(180deg); }
+        input, select, textarea {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: white !important;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #00d4ff !important;
+            box-shadow: 0 0 0 1px #00d4ff !important;
+            outline: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-white overflow-x-hidden">
+<input id="sidebar-toggle" type="checkbox"/>
+<div class="flex h-screen overflow-hidden">
+<aside class="w-72 glass-card h-full flex flex-col z-20 border-l border-glass-border transition-all duration-300 relative">
+<div class="p-8 flex items-center gap-4 logo-container">
+<div class="w-10 h-10 min-w-[2.5rem] rounded-xl bg-primary flex items-center justify-center shadow-[0_0_20px_rgba(0,212,255,0.4)]">
+<span class="material-symbols-outlined text-background-dark font-bold">directions_car</span>
+</div>
+<div class="logo-text">
+<h1 class="text-lg font-bold tracking-tight text-white whitespace-nowrap">معرض الفخامة</h1>
+<p class="text-xs text-primary/70 font-medium whitespace-nowrap">نظام إدارة المبيعات</p>
+</div>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="dash.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium nav-label whitespace-nowrap">الرئيسية</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="caradd.html">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-medium nav-label whitespace-nowrap">إضافة سيارة</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg active-nav text-primary" href="akedd.html">
+<span class="material-symbols-outlined">note_add</span>
+<span class="font-medium nav-label whitespace-nowrap">إنشاء عقد</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="aksad.html">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-medium nav-label whitespace-nowrap">الأقساط</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="oke.html">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="font-medium nav-label whitespace-nowrap">الوكلاء</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="msroo.html">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-medium nav-label whitespace-nowrap">المصروفات</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="carnow.html">
+<span class="material-symbols-outlined">minor_crash</span>
+<span class="font-medium nav-label whitespace-nowrap">السيارات المتوفرة</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="akeddold.html">
+<span class="material-symbols-outlined">history_edu</span>
+<span class="font-medium nav-label whitespace-nowrap">العقود السابقة</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="ersheef.html">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-medium nav-label whitespace-nowrap">الأرشيف</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="tkr.html">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-medium nav-label whitespace-nowrap">التقارير</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="sitens.html">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium nav-label whitespace-nowrap">الإعدادات</span>
+</a>
+</nav>
+<div class="p-6 mt-auto">
+<button class="w-full flex items-center justify-center gap-2 bg-white/5 hover:bg-red-500/20 text-white py-3 rounded-xl transition-all border border-glass-border logout-btn">
+<span class="material-symbols-outlined text-sm">logout</span>
+<span class="text-sm font-bold logout-text whitespace-nowrap">تسجيل الخروج</span>
+</button>
+</div>
+</aside>
+<main class="flex-1 flex flex-col relative overflow-y-auto">
+<header class="sticky top-0 z-10 glass-card mx-8 mt-6 rounded-2xl flex items-center justify-between px-6 py-4 border border-glass-border">
+<div class="flex items-center gap-4 flex-1">
+<label class="cursor-pointer w-10 h-10 rounded-xl bg-white/5 border border-glass-border flex items-center justify-center hover:bg-white/10 transition-colors" for="sidebar-toggle">
+<span class="material-symbols-outlined text-primary toggle-icon transition-transform duration-300">menu_open</span>
+</label>
+<div class="relative w-full max-w-md hidden md:block">
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-white/40">search</span>
+<input class="w-full bg-white/5 border-none focus:ring-1 focus:ring-primary rounded-xl pr-12 text-sm text-white placeholder:text-white/30 h-11" placeholder="بحث عن عقد، سيارة، أو عميل..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3 border-r border-glass-border pr-6">
+<button class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:bg-white/10">
+<span class="material-symbols-outlined text-white/70">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:bg-white/10">
+<span class="material-symbols-outlined text-white/70">dark_mode</span>
+</button>
+</div>
+<div class="flex items-center gap-3 mr-2">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold text-white">أحمد المحمدي</p>
+<p class="text-[10px] text-white/50 uppercase tracking-widest">مدير المعرض</p>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-primary/30 p-0.5">
+<div class="w-full h-full rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCioYRG3R3nFYLz7Wi0Dx2d_Dj3Cj11ZNz6tXvLiqVOBs61Nu_QkHZMoMnA1_30oSTmQAFs3m5gJkvKqOVaNrbjJD9he7xH2fXoNu8J3D9D0Usn4Ml9OatyFtOZbcEgP77FLDfQ6Ip0kAi_cTJyJEoddnEdrx-wvUSujNwRbfAoiHvaDOIgVZLUjPqCpkzADZSM9zYqntkjR_kdPKKU9tp5ig5pad_7ALqUH6ca2ZhRjOZYapSR9_TwgOFQjgc5mcaWRPPlgqqE0n8')"></div>
+</div>
+</div>
+</div>
+</header>
+<div class="p-8 space-y-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h2 class="text-2xl font-bold text-white">إنشاء عقد بيع سيارة تفصيلي</h2>
+<p class="text-white/50 text-sm mt-1">نموذج العقد المعتمد - يرجى ملء كافة البيانات القانونية بدقة</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary/20 hover:bg-primary/30 text-primary border border-primary/30 transition-all font-bold">
+<span class="material-symbols-outlined text-xl">save</span>
+<span>حفظ</span>
+</button>
+<button class="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white border border-glass-border transition-all font-bold">
+<span class="material-symbols-outlined text-xl">print</span>
+<span>حفظ وطباعة</span>
+</button>
+<button class="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 transition-all font-bold">
+<span class="material-symbols-outlined text-xl">archive</span>
+<span>حفظ وأرشفة</span>
+</button>
+</div>
+</div>
+<form class="space-y-8 pb-12">
+<div class="glass-card rounded-2xl p-8 border-r-4 border-r-primary">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">person</span>
+</div>
+<h3 class="text-xl font-bold">الطرف الأول (البائع)</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+<div class="md:col-span-2 space-y-2">
+<label class="text-sm font-medium text-white/70">الاسم الكامل</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" placeholder="أدخل اسم البائع الرباعي" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">رقم الهاتف</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm text-left" dir="ltr" placeholder="07XXXXXXXX" type="tel"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">المهنة</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" placeholder="المهنة الحالية" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">رقم البطاقة الوطنية</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" placeholder="أو رقم هوية الأحوال" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">جهة الإصدار</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" placeholder="دائرة أحوال..." type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">المحافظة</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" placeholder="بغداد، البصرة..." type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">القضاء</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">الناحية</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">المحلة</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" placeholder="رقم المحلة" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">الزقاق</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" placeholder="رقم الزقاق" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">الدار</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" placeholder="رقم الدار" type="text"/>
+</div>
+</div>
+</div>
+<div class="glass-card rounded-2xl p-8 border-r-4 border-r-cyan-400">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-xl bg-cyan-400/10 flex items-center justify-center text-cyan-400">
+<span class="material-symbols-outlined">person_add</span>
+</div>
+<h3 class="text-xl font-bold">الطرف الثاني (المشتري)</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+<div class="md:col-span-2 space-y-2">
+<label class="text-sm font-medium text-white/70">الاسم الكامل</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" placeholder="أدخل اسم المشتري الرباعي" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">رقم الهاتف</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm text-left" dir="ltr" placeholder="07XXXXXXXX" type="tel"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">المهنة</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" placeholder="المهنة الحالية" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">رقم البطاقة الوطنية</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" placeholder="أو رقم هوية الأحوال" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">جهة الإصدار</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" placeholder="دائرة أحوال..." type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">المحافظة</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" placeholder="بغداد، البصرة..." type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">القضاء</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">الناحية</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">المحلة</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">الزقاق</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">الدار</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" type="text"/>
+</div>
+</div>
+</div>
+<div class="glass-card rounded-2xl p-8 border-r-4 border-r-purple-500">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-500">
+<span class="material-symbols-outlined">directions_car</span>
+</div>
+<h3 class="text-xl font-bold">بيانات المركبة</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">نوع المركبة</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" placeholder="مثال: تويوتا كامري" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">الموديل</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" placeholder="XLE, Sport..." type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">السنة (عام الصنع)</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" placeholder="2024" type="number"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">اللون</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" placeholder="أبيض صدفي" type="text"/>
+</div>
+<div class="md:col-span-2 space-y-2">
+<label class="text-sm font-medium text-white/70">رقم الشاصي (VIN)</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" placeholder="أدخل 17 حرفاً ورقماً" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">رقم اللوحة</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" placeholder="123456" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">محافظة اللوحة</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" placeholder="بغداد / أربيل..." type="text"/>
+</div>
+</div>
+</div>
+<div class="glass-card rounded-2xl p-8 border-r-4 border-r-green-500">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center text-green-500">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<h3 class="text-xl font-bold">تفاصيل البيع</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">سعر البيع (د.ع)</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" placeholder="0.00" type="number"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">سعر المركبة (دولار)</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" placeholder="0.00" type="number"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">طريقة الدفع</label>
+<select class="w-full rounded-xl px-4 py-3 text-sm appearance-none">
+<option>نقدي</option>
+<option>آجل</option>
+<option>قسط</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">المبلغ المتبقي</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" placeholder="0.00" type="number"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">تاريخ العقد</label>
+<input class="w-full rounded-xl px-4 py-3 text-sm" type="date"/>
+</div>
+</div>
+</div>
+<div class="glass-card rounded-2xl p-8 border-r-4 border-r-orange-500">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-500">
+<span class="material-symbols-outlined">description</span>
+</div>
+<h3 class="text-xl font-bold">الشروط العامة والملاحظات</h3>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-white/70">أدخل أي شروط إضافية أو ملاحظات قانونية هنا</label>
+<textarea class="w-full rounded-xl px-4 py-3 text-sm min-h-[150px] resize-none" placeholder="اكتب الشروط العامة للعقد هنا..."></textarea>
+</div>
+</div>
+<div class="glass-card rounded-2xl p-8 border-r-4 border-r-gray-400">
+<div class="flex items-center gap-3 mb-10">
+<div class="w-10 h-10 rounded-xl bg-gray-400/10 flex items-center justify-center text-gray-400">
+<span class="material-symbols-outlined">draw</span>
+</div>
+<h3 class="text-xl font-bold">مصادقة وتواقيع الأطراف</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="text-center space-y-4">
+<p class="text-white/70 font-bold border-b border-white/10 pb-2">البائع</p>
+<div class="h-24 bg-white/5 border border-dashed border-white/20 rounded-xl flex items-center justify-center">
+<span class="text-white/20 text-xs">توقيع الطرف الأول</span>
+</div>
+<input class="w-full bg-transparent border-none text-center text-sm font-medium focus:ring-0" placeholder="اسم البائع الثلاثي" type="text"/>
+</div>
+<div class="text-center space-y-4">
+<p class="text-white/70 font-bold border-b border-white/10 pb-2">المشتري</p>
+<div class="h-24 bg-white/5 border border-dashed border-white/20 rounded-xl flex items-center justify-center">
+<span class="text-white/20 text-xs">توقيع الطرف الثاني</span>
+</div>
+<input class="w-full bg-transparent border-none text-center text-sm font-medium focus:ring-0" placeholder="اسم المشتري الثلاثي" type="text"/>
+</div>
+<div class="text-center space-y-4">
+<p class="text-white/70 font-bold border-b border-white/10 pb-2">منظم العقد (الموظف)</p>
+<div class="h-24 bg-white/5 border border-dashed border-white/20 rounded-xl flex items-center justify-center">
+<span class="text-white/20 text-xs">ختم وتوقيع المعرض</span>
+</div>
+<input class="w-full bg-transparent border-none text-center text-sm font-medium focus:ring-0" placeholder="اسم الموظف المسؤول" type="text"/>
+</div>
+</div>
+<div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-12 border-t border-white/10 pt-10">
+<div class="text-center space-y-4">
+<p class="text-white/70 font-bold">الشاهد الأول</p>
+<div class="h-20 bg-white/5 border border-dashed border-white/20 rounded-xl flex items-center justify-center">
+<span class="text-white/20 text-xs">توقيع الشاهد</span>
+</div>
+<input class="w-full bg-transparent border-none text-center text-sm focus:ring-0" placeholder="اسم الشاهد الأول" type="text"/>
+</div>
+<div class="text-center space-y-4">
+<p class="text-white/70 font-bold">الشاهد الثاني</p>
+<div class="h-20 bg-white/5 border border-dashed border-white/20 rounded-xl flex items-center justify-center">
+<span class="text-white/20 text-xs">توقيع الشاهد</span>
+</div>
+<input class="w-full bg-transparent border-none text-center text-sm focus:ring-0" placeholder="اسم الشاهد الثاني" type="text"/>
+</div>
+</div>
+</div>
+</form>
+</div>
+<footer class="py-10 text-center text-white/20 text-xs mt-auto">
+            © 2024 جميع الحقوق محفوظة - نظام إدارة معارض السيارات الذكي
+        </footer>
+</main>
+</div>
+
+</body></html>

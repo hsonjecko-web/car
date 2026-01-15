@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html class="dark" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>السيارات المتوفرة - معرض الفخامة</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans+Arabic:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00d4ff",
+                        "background-light": "#f2f2f3",
+                        "background-dark": "#0f0f1a",
+                        "glass-border": "rgba(255, 255, 255, 0.1)",
+                        "glass-bg": "rgba(255, 255, 255, 0.03)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "Noto Sans Arabic", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        :root {
+            --sidebar-width: 18rem;
+            --sidebar-collapsed-width: 5rem;
+        }
+        body {
+            font-family: 'Space Grotesk', 'Noto Sans Arabic', sans-serif;
+        }
+        .dark body {
+            background-color: #0f0f1a;
+            background-image:
+                radial-gradient(circle at 0% 0%, rgba(0, 212, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(123, 31, 162, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(15, 15, 26, 1) 0%, rgba(15, 15, 26, 1) 100%);
+        }
+        .light body {
+            background-color: #f2f2f3;
+            background-image: none;
+            color: black;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .light .glass-card {
+            background: rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav {
+            background: linear-gradient(90deg, rgba(0, 212, 255, 0.15) 0%, transparent 100%);
+            border-right: 3px solid #00d4ff;
+        }
+        #sidebar-toggle { display: none; }
+        #sidebar-toggle:checked ~ .flex aside { width: var(--sidebar-collapsed-width); }
+        #sidebar-toggle:checked ~ .flex aside .logo-text,
+        #sidebar-toggle:checked ~ .flex aside .nav-label,
+        #sidebar-toggle:checked ~ .flex aside .logout-text { display: none; }
+        #sidebar-toggle:checked ~ .flex aside .logo-container { justify-content: center; padding-left: 0; padding-right: 0; }
+        #sidebar-toggle:checked ~ .flex aside nav a { justify-content: center; padding-left: 0; padding-right: 0; }
+        #sidebar-toggle:checked ~ .flex aside .logout-btn { justify-content: center; }
+        #sidebar-toggle:checked ~ .flex .toggle-icon { transform: rotate(180deg); }
+    </style>
+</head>
+<body class="bg-background-dark min-h-screen text-white overflow-x-hidden">
+<input id="sidebar-toggle" type="checkbox"/>
+<div class="flex h-screen overflow-hidden">
+<aside class="w-72 glass-card h-full flex flex-col z-20 border-l border-glass-border transition-all duration-300 relative">
+<div class="p-8 flex items-center gap-4 logo-container">
+<div class="w-10 h-10 min-w-[2.5rem] rounded-xl bg-primary flex items-center justify-center shadow-[0_0_20px_rgba(0,212,255,0.4)]">
+<span class="material-symbols-outlined text-background-dark font-bold">directions_car</span>
+</div>
+<div class="logo-text">
+<h1 class="text-lg font-bold tracking-tight text-white whitespace-nowrap">معرض الفخامة</h1>
+<p class="text-xs text-primary/70 font-medium whitespace-nowrap">نظام إدارة المبيعات</p>
+</div>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="dash.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium nav-label whitespace-nowrap">الرئيسية</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="caradd.html">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-medium nav-label whitespace-nowrap">إضافة سيارة</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="akedd.html">
+<span class="material-symbols-outlined">note_add</span>
+<span class="font-medium nav-label whitespace-nowrap">إنشاء عقد</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="aksad.html">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-medium nav-label whitespace-nowrap">الأقساط</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="oke.html">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="font-medium nav-label whitespace-nowrap">الوكلاء</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="msroo.html">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-medium nav-label whitespace-nowrap">المصروفات</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg active-nav text-primary" href="carnow.html">
+<span class="material-symbols-outlined">minor_crash</span>
+<span class="font-medium nav-label whitespace-nowrap">السيارات المتوفرة</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="akeddold.html">
+<span class="material-symbols-outlined">history_edu</span>
+<span class="font-medium nav-label whitespace-nowrap">العقود السابقة</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="ersheef.html">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-medium nav-label whitespace-nowrap">الأرشيف</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="tkr.html">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-medium nav-label whitespace-nowrap">التقارير</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="sitens.html">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium nav-label whitespace-nowrap">الإعدادات</span>
+</a>
+</nav>
+<div class="p-6 mt-auto">
+<button class="w-full flex items-center justify-center gap-2 bg-white/5 hover:bg-accent-red/20 text-white py-3 rounded-xl transition-all border border-glass-border logout-btn">
+<span class="material-symbols-outlined text-sm">logout</span>
+<span class="text-sm font-bold logout-text whitespace-nowrap">تسجيل الخروج</span>
+</button>
+</div>
+</aside>
+<main class="flex-1 flex flex-col relative overflow-y-auto">
+<header class="sticky top-0 z-10 glass-card mx-8 mt-6 rounded-2xl flex items-center justify-between px-6 py-4 border border-glass-border">
+<div class="flex items-center gap-4 flex-1">
+<label class="cursor-pointer w-10 h-10 rounded-xl bg-white/5 border border-glass-border flex items-center justify-center hover:bg-white/10 transition-colors" for="sidebar-toggle">
+<span class="material-symbols-outlined text-primary toggle-icon transition-transform duration-300">menu_open</span>
+</label>
+<div class="relative w-full max-w-md hidden md:block">
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-white/40">search</span>
+<input class="w-full bg-white/5 border-none focus:ring-1 focus:ring-primary rounded-xl pr-12 text-sm text-white placeholder:text-white/30 h-11" placeholder="بحث عن سيارة أو موديل..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3 border-r border-glass-border pr-6">
+<button class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:bg-white/10">
+<span class="material-symbols-outlined text-white/70">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:bg-white/10">
+<span class="material-symbols-outlined text-white/70">dark_mode</span>
+</button>
+</div>
+<div class="flex items-center gap-3 mr-2">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold text-white">أحمد المحمدي</p>
+<p class="text-[10px] text-white/50 uppercase tracking-widest">مدير المعرض</p>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-primary/30 p-0.5">
+<div class="w-full h-full rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDViqQvLcJBEFAqBfC3C5RneV5NYR4PuANfUXBO_lHjRNNh2d7wkyQIjCqsUdeycS5XJrkMrNFvg1AMc5ImYNhlUAP3vRERMxES5JO0zG9NTju565QhJlxWVZY18tddnaHlVNAmjPhBSCdt-qcQkex9iBfkOokdcfzIqKrdk6yKU5MlBJFWxHy-KtwwleG0d30YyY_RxagugKUEvo8YJoksJjGb-0WqpDKLCq11ggYqx7GRvAIpBAFoi_7l3i9xb2gJ1TrMxkFOiBQ')"></div>
+</div>
+</div>
+</div>
+</header>
+<div class="p-8 space-y-8">
+<div class="flex items-center justify-between px-2">
+<div>
+<h2 class="text-2xl font-bold text-white">السيارات المتوفرة</h2>
+<p class="text-white/40 text-sm mt-1">إجمالي السيارات المتاحة في المعرض: 24 سيارة</p>
+</div>
+<div class="flex gap-3">
+<button class="glass-card px-4 py-2 rounded-xl text-sm font-medium hover:bg-white/5 transition-colors border border-glass-border flex items-center gap-2 text-white/70">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                        تصفية
+                    </button>
+<button class="bg-primary text-background-dark px-4 py-2 rounded-xl text-sm font-bold hover:bg-primary/90 transition-all flex items-center gap-2 shadow-[0_0_15px_rgba(0,212,255,0.3)]">
+<span class="material-symbols-outlined text-sm">add</span>
+                        إضافة جديدة
+                    </button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<div class="glass-card rounded-3xl overflow-hidden group hover:border-primary/40 transition-all duration-500 flex flex-col h-full">
+<div class="relative h-52 overflow-hidden">
+<img alt="BMW X6" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDq8EAGXW6FG4MqRA5VGrfKoFV7jYLy1xSAopWYoVNEBstTbVngZmNyY6fnYNxaHoreHemUhOCennDjEpPuPn-wf9ZgheLmV2uy8n9kU77RUuxytvLjaxY1Hda_98mzFrm7n4SBuxUGyL4fz8pXTV7P0IxRuEuYmba6D0t0YXHr9c2E681VKohhpNmEAU9uroiNNRpYVp5Ry-m8rQxXXTnwq0Az4DFPrCz0DJ249mrMicLUIcsejbxjW9QpRem0C_Y3zoVSukYSPyU"/>
+<div class="absolute top-4 right-4 bg-green-500/90 text-white text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                            متوفرة
+                        </div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-xl font-bold text-white group-hover:text-primary transition-colors">BMW X6 M-Power</h3>
+<p class="text-white/40 text-xs font-medium mt-1">الموديل: Competition</p>
+</div>
+<div class="text-accent-red">
+<span class="material-symbols-outlined text-2xl">directions_car</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-y-3 mb-6">
+<div class="flex items-center gap-2 text-white/60">
+<span class="material-symbols-outlined text-sm text-primary">calendar_today</span>
+<span class="text-xs">2024</span>
+</div>
+<div class="flex items-center gap-2 text-white/60">
+<span class="material-symbols-outlined text-sm text-primary">palette</span>
+<span class="text-xs">أسود كربوني</span>
+</div>
+<div class="flex items-center gap-2 text-white/60">
+<span class="material-symbols-outlined text-sm text-primary">tag</span>
+<span class="text-xs font-display">123456</span>
+</div>
+<div class="flex items-center gap-2 text-white/60">
+<span class="material-symbols-outlined text-sm text-primary">location_on</span>
+<span class="text-xs">بغداد</span>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-glass-border space-y-1 mb-6">
+<p class="text-2xl font-bold text-primary tracking-tight">123,000,000 <span class="text-xs font-normal opacity-70">د.ع</span></p>
+<p class="text-sm text-white/40 font-display">$82,000</p>
+</div>
+<button class="w-full py-3 rounded-xl glass-card border-white/10 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 flex items-center justify-center gap-2 group/btn">
+<span class="text-sm font-bold text-white group-hover/btn:text-primary">عرض التفاصيل</span>
+<span class="material-symbols-outlined text-lg group-hover/btn:translate-x-1 transition-transform">arrow_back</span>
+</button>
+</div>
+</div>
+<div class="glass-card rounded-3xl overflow-hidden group hover:border-primary/40 transition-all duration-500 flex flex-col h-full">
+<div class="relative h-52 overflow-hidden">
+<img alt="Lexus RX" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRjcPcg2An9XKUKN5H2uVe6ssAMnokGR9ZJI69cZHnFyI2poXjDiSLw8_OwJt79nq_13Y1Wy8h4F0SGqQH0DjMQ2qrmdB4VGpugw2Tcs77XDIQXmkstfkrOIxe0cXoGb_cNn6tudG6_qELvwB4Qe4uz0n12u9ZNFNyob_96a3QODN1J60D-Ke4ieG-NerkuFGtTPdMFSTJYUB6jsLhr7qVu1mEnH2-pheC6yjibZg-7h96fN46v6b-4gNLSASWu47zengmUQT4YrY"/>
+<div class="absolute top-4 right-4 bg-green-500/90 text-white text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                            متوفرة
+                        </div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-xl font-bold text-white group-hover:text-primary transition-colors">Lexus RX 350</h3>
+<p class="text-white/40 text-xs font-medium mt-1">الموديل: Luxury</p>
+</div>
+<div class="text-accent-red">
+<span class="material-symbols-outlined text-2xl">directions_car</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-y-3 mb-6">
+<div class="flex items-center gap-2 text-white/60">
+<span class="material-symbols-outlined text-sm text-primary">calendar_today</span>
+<span class="text-xs">2023</span>
+</div>
+<div class="flex items-center gap-2 text-white/60">
+<span class="material-symbols-outlined text-sm text-primary">palette</span>
+<span class="text-xs">أبيض صدفي</span>
+</div>
+<div class="flex items-center gap-2 text-white/60">
+<span class="material-symbols-outlined text-sm text-primary">tag</span>
+<span class="text-xs font-display">990155</span>
+</div>
+<div class="flex items-center gap-2 text-white/60">
+<span class="material-symbols-outlined text-sm text-primary">location_on</span>
+<span class="text-xs">أربيل</span>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-glass-border space-y-1 mb-6">
+<p class="text-2xl font-bold text-primary tracking-tight">95,000,000 <span class="text-xs font-normal opacity-70">د.ع</span></p>
+<p class="text-sm text-white/40 font-display">$63,300</p>
+</div>
+<button class="w-full py-3 rounded-xl glass-card border-white/10 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 flex items-center justify-center gap-2 group/btn">
+<span class="text-sm font-bold text-white group-hover/btn:text-primary">عرض التفاصيل</span>
+<span class="material-symbols-outlined text-lg group-hover/btn:translate-x-1 transition-transform">arrow_back</span>
+</button>
+</div>
+</div>
+<div class="glass-card rounded-3xl overflow-hidden group hover:border-primary/40 transition-all duration-500 flex flex-col h-full">
+<div class="relative h-52 overflow-hidden">
+<img alt="Mercedes S-Class" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASgSOzGDkB-_FqLuI-RwZczjwyIuAw2ruG6r3sftzX9Q9oOJWi5I5zoQCD6ZZxYS8AT1XQaAuKDmO6SOEtNLdhsEaR-EUe1qgRuWt0vGftAcJGrF3UJr9tHYjxqEh4_YNH61E3QDBwr9l_nhOqp0EfQxlyfzsuvfo80F1TrWCQYTn1AZUCFA2gwya2apSY_qlmwL_2XYswxLu9mqtg7hnUP_cppOk4MEUhhNOOPCO9px0KmksLSq-8-Oy3bCVZ9JlUJ4BMYpZb2q0"/>
+<div class="absolute top-4 right-4 bg-green-500/90 text-white text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                            متوفرة
+                        </div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-xl font-bold text-white group-hover:text-primary transition-colors">Mercedes S500</h3>
+<p class="text-white/40 text-xs font-medium mt-1">الموديل: AMG Line</p>
+</div>
+<div class="text-accent-red">
+<span class="material-symbols-outlined text-2xl">directions_car</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-y-3 mb-6">
+<div class="flex items-center gap-2 text-white/60">
+<span class="material-symbols-outlined text-sm text-primary">calendar_today</span>
+<span class="text-xs">2024</span>
+</div>
+<div class="flex items-center gap-2 text-white/60">
+<span class="material-symbols-outlined text-sm text-primary">palette</span>
+<span class="text-xs">رمادي مطفي</span>
+</div>
+<div class="flex items-center gap-2 text-white/60">
+<span class="material-symbols-outlined text-sm text-primary">tag</span>
+<span class="text-xs font-display">882201</span>
+</div>
+<div class="flex items-center gap-2 text-white/60">
+<span class="material-symbols-outlined text-sm text-primary">location_on</span>
+<span class="text-xs">البصرة</span>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-glass-border space-y-1 mb-6">
+<p class="text-2xl font-bold text-primary tracking-tight">165,000,000 <span class="text-xs font-normal opacity-70">د.ع</span></p>
+<p class="text-sm text-white/40 font-display">$110,000</p>
+</div>
+<button class="w-full py-3 rounded-xl glass-card border-white/10 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 flex items-center justify-center gap-2 group/btn">
+<span class="text-sm font-bold text-white group-hover/btn:text-primary">عرض التفاصيل</span>
+<span class="material-symbols-outlined text-lg group-hover/btn:translate-x-1 transition-transform">arrow_back</span>
+</button>
+</div>
+</div>
+<div class="glass-card rounded-3xl overflow-hidden group hover:border-primary/40 transition-all duration-500 flex flex-col h-full">
+<div class="relative h-52 overflow-hidden">
+<img alt="Porsche 911" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhC_KFupVH4ioDdrejQI_EHug0a8GozVgI2FIcHlJXwI-7YHVjnKcIezJ6P9VV44Hl6BTUE16hkUb3FzLXOgjuo6qkJJGEPtGAIFFWOhL2Ou5m5R7WmaBQS7Djrkw-_rPz4VTEe-EEZoxr4Xnb8JsIPdKt5Z1cCEA2A8CjmBODQZiXEgsPu-OcLmkIkgMyyMq5QkOczjYP14RPY8J4-nIUjEyYpcFluZb4VU-4lYIA2a40AO1Vy-hHU8ZfqYhC_DzQLuqzosgSVGM"/>
+<div class="absolute top-4 right-4 bg-green-500/90 text-white text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                            متوفرة
+                        </div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-xl font-bold text-white group-hover:text-primary transition-colors">Porsche 911 GT3</h3>
+<p class="text-white/40 text-xs font-medium mt-1">الموديل: Touring</p>
+</div>
+<div class="text-accent-red">
+<span class="material-symbols-outlined text-2xl">directions_car</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-y-3 mb-6">
+<div class="flex items-center gap-2 text-white/60">
+<span class="material-symbols-outlined text-sm text-primary">calendar_today</span>
+<span class="text-xs">2022</span>
+</div>
+<div class="flex items-center gap-2 text-white/60">
+<span class="material-symbols-outlined text-sm text-primary">palette</span>
+<span class="text-xs">أحمر قاني</span>
+</div>
+<div class="flex items-center gap-2 text-white/60">
+<span class="material-symbols-outlined text-sm text-primary">tag</span>
+<span class="text-xs font-display">334411</span>
+</div>
+<div class="flex items-center gap-2 text-white/60">
+<span class="material-symbols-outlined text-sm text-primary">location_on</span>
+<span class="text-xs">بغداد</span>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-glass-border space-y-1 mb-6">
+<p class="text-2xl font-bold text-primary tracking-tight">190,000,000 <span class="text-xs font-normal opacity-70">د.ع</span></p>
+<p class="text-sm text-white/40 font-display">$126,500</p>
+</div>
+<button class="w-full py-3 rounded-xl glass-card border-white/10 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 flex items-center justify-center gap-2 group/btn">
+<span class="text-sm font-bold text-white group-hover/btn:text-primary">عرض التفاصيل</span>
+<span class="material-symbols-outlined text-lg group-hover/btn:translate-x-1 transition-transform">arrow_back</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<footer class="py-10 text-center text-white/20 text-xs mt-auto">
+            © 2024 جميع الحقوق محفوظة - نظام إدارة معارض السيارات الذكي
+        </footer>
+</main>
+</div>
+
+</body></html>

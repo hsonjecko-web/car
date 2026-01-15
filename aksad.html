@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html class="dark" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>إدارة الأقساط - لوحة تحكم</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans+Arabic:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00d4ff",
+                        "background-light": "#f2f2f3",
+                        "background-dark": "#0f0f1a",
+                        "glass-border": "rgba(255, 255, 255, 0.1)",
+                        "glass-bg": "rgba(255, 255, 255, 0.03)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "Noto Sans Arabic", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        :root {
+            --sidebar-width: 18rem;
+            --sidebar-collapsed-width: 5rem;
+        }
+        body {
+            font-family: 'Space Grotesk', 'Noto Sans Arabic', sans-serif;
+            background-color: #0f0f1a;
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(0, 212, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(123, 31, 162, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(15, 15, 26, 1) 0%, rgba(15, 15, 26, 1) 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav {
+            background: linear-gradient(90deg, rgba(0, 212, 255, 0.15) 0%, transparent 100%);
+            border-right: 3px solid #00d4ff;
+        }
+        #sidebar-toggle { display: none; }
+        #sidebar-toggle:checked ~ .flex aside { width: var(--sidebar-collapsed-width); }
+        #sidebar-toggle:checked ~ .flex aside .logo-text,
+        #sidebar-toggle:checked ~ .flex aside .nav-label,
+        #sidebar-toggle:checked ~ .flex aside .logout-text { display: none; }
+        #sidebar-toggle:checked ~ .flex aside .logo-container { justify-content: center; padding-left: 0; padding-right: 0; }
+        #sidebar-toggle:checked ~ .flex aside nav a { justify-content: center; padding-left: 0; padding-right: 0; }
+        #sidebar-toggle:checked ~ .flex aside .logout-btn { justify-content: center; }
+        #sidebar-toggle:checked ~ .flex .toggle-icon { transform: rotate(180deg); }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-white overflow-x-hidden">
+<input id="sidebar-toggle" type="checkbox"/>
+<div class="flex h-screen overflow-hidden">
+<aside class="w-72 glass-card h-full flex flex-col z-20 border-l border-glass-border transition-all duration-300 relative">
+<div class="p-8 flex items-center gap-4 logo-container">
+<div class="w-10 h-10 min-w-[2.5rem] rounded-xl bg-primary flex items-center justify-center shadow-[0_0_20px_rgba(0,212,255,0.4)]">
+<span class="material-symbols-outlined text-background-dark font-bold">directions_car</span>
+</div>
+<div class="logo-text">
+<h1 class="text-lg font-bold tracking-tight text-white whitespace-nowrap">معرض الفخامة</h1>
+<p class="text-xs text-primary/70 font-medium whitespace-nowrap">نظام إدارة المبيعات</p>
+</div>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="dash.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium nav-label whitespace-nowrap">الرئيسية</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="caradd.html">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-medium nav-label whitespace-nowrap">إضافة سيارة</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="akedd.html">
+<span class="material-symbols-outlined">note_add</span>
+<span class="font-medium nav-label whitespace-nowrap">إنشاء عقد</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg active-nav text-primary" href="aksad.html">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-medium nav-label whitespace-nowrap">الأقساط</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="oke.html">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="font-medium nav-label whitespace-nowrap">الوكلاء</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="msroo.html">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-medium nav-label whitespace-nowrap">المصروفات</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="carnow.html">
+<span class="material-symbols-outlined">minor_crash</span>
+<span class="font-medium nav-label whitespace-nowrap">السيارات المتوفرة</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="akeddold.html">
+<span class="material-symbols-outlined">history_edu</span>
+<span class="font-medium nav-label whitespace-nowrap">العقود السابقة</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="ersheef.html">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-medium nav-label whitespace-nowrap">الأرشيف</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="tkr.html">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-medium nav-label whitespace-nowrap">التقارير</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors text-white/70 hover:text-white" href="sitens.html">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium nav-label whitespace-nowrap">الإعدادات</span>
+</a>
+</nav>
+<div class="p-6 mt-auto">
+<button class="w-full flex items-center justify-center gap-2 bg-white/5 hover:bg-red-500/20 text-white py-3 rounded-xl transition-all border border-glass-border logout-btn">
+<span class="material-symbols-outlined text-sm">logout</span>
+<span class="text-sm font-bold logout-text whitespace-nowrap">تسجيل الخروج</span>
+</button>
+</div>
+</aside>
+<main class="flex-1 flex flex-col relative overflow-y-auto">
+<header class="sticky top-0 z-10 glass-card mx-8 mt-6 rounded-2xl flex items-center justify-between px-6 py-4 border border-glass-border">
+<div class="flex items-center gap-4 flex-1">
+<label class="cursor-pointer w-10 h-10 rounded-xl bg-white/5 border border-glass-border flex items-center justify-center hover:bg-white/10 transition-colors" for="sidebar-toggle">
+<span class="material-symbols-outlined text-primary toggle-icon transition-transform duration-300">menu_open</span>
+</label>
+<div class="relative w-full max-w-md hidden md:block">
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-white/40">search</span>
+<input class="w-full bg-white/5 border-none focus:ring-1 focus:ring-primary rounded-xl pr-12 text-sm text-white placeholder:text-white/30 h-11" placeholder="بحث عن عقد، سيارة، أو عميل..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3 border-r border-glass-border pr-6">
+<button class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:bg-white/10">
+<span class="material-symbols-outlined text-white/70">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:bg-white/10">
+<span class="material-symbols-outlined text-white/70">dark_mode</span>
+</button>
+</div>
+<div class="flex items-center gap-3 mr-2">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold text-white">أحمد المحمدي</p>
+<p class="text-[10px] text-white/50 uppercase tracking-widest">مدير المعرض</p>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-primary/30 p-0.5">
+<div class="w-full h-full rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCioYRG3R3nFYLz7Wi0Dx2d_Dj3Cj11ZNz6tXvLiqVOBs61Nu_QkHZMoMnA1_30oSTmQAFs3m5gJkvKqOVaNrbjJD9he7xH2fXoNu8J3D9D0Usn4Ml9OatyFtOZbcEgP77FLDfQ6Ip0kAi_cTJyJEoddnEdrx-wvUSujNwRbfAoiHvaDOIgVZLUjPqCpkzADZSM9zYqntkjR_kdPKKU9tp5ig5pad_7ALqUH6ca2ZhRjOZYapSR9_TwgOFQjgc5mcaWRPPlgqqE0n8')"></div>
+</div>
+</div>
+</div>
+</header>
+<div class="p-8 space-y-8">
+<div class="flex items-center justify-between mb-8">
+<div>
+<nav class="flex items-center gap-2 text-xs text-gray-500 mb-2">
+<span>الرئيسية</span>
+<span class="material-symbols-outlined text-[14px]">chevron_left</span>
+<span>إدارة الأقساط</span>
+<span class="material-symbols-outlined text-[14px]">chevron_left</span>
+<span class="text-primary/80">تفاصيل العقد</span>
+</nav>
+<h1 class="text-3xl font-bold flex items-center gap-4">
+<span>تفاصيل أقساط العقد</span>
+<span class="px-4 py-1 rounded-lg bg-primary/10 text-primary text-lg font-display border border-primary/20">#CONT-88219</span>
+</h1>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-glass-border bg-white/5 hover:bg-white/10 transition-all text-sm">
+<span class="material-symbols-outlined text-lg">print</span>
+<span>طباعة العقد</span>
+</button>
+<button class="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary text-background-dark font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all text-sm">
+<span class="material-symbols-outlined text-lg">payments</span>
+<span>دفع القسط الحالي</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-8">
+<div class="col-span-4 space-y-6">
+<div class="glass-panel p-6 rounded-3xl card-glow-cyan">
+<div class="flex items-center gap-3 mb-5 border-b border-glass-border pb-4">
+<span class="material-symbols-outlined text-primary">directions_car</span>
+<h2 class="text-lg font-bold">معلومات المركبة</h2>
+</div>
+<div class="space-y-4 text-sm">
+<div class="flex justify-between items-center"><span class="text-gray-400">نوع المركبة:</span> <span class="font-semibold">مرسيدس G-Class 2024</span></div>
+<div class="flex justify-between items-center"><span class="text-gray-400">اللون الخارجي:</span> <span class="font-semibold">أسود لامع</span></div>
+<div class="flex justify-between items-center"><span class="text-gray-400">رقم الشاصي:</span> <span class="font-semibold font-display tracking-wider text-gray-300">WDB...90F299</span></div>
+<div class="flex justify-between items-center"><span class="text-gray-400">سنة الصنع:</span> <span class="font-semibold font-display">2024</span></div>
+</div>
+</div>
+<div class="glass-panel p-6 rounded-3xl">
+<div class="flex items-center gap-3 mb-5 border-b border-glass-border pb-4">
+<span class="material-symbols-outlined text-gray-400">person</span>
+<h2 class="text-lg font-bold">معلومات المشتري</h2>
+</div>
+<div class="space-y-4 text-sm">
+<div class="flex justify-between items-center"><span class="text-gray-400">اسم المشتري:</span> <span class="font-semibold">محمد سلمان الجبوري</span></div>
+<div class="flex justify-between items-center"><span class="text-gray-400">رقم الهاتف:</span> <span class="font-semibold font-display text-left text-primary" dir="ltr">+964 770 123 4567</span></div>
+<div class="flex justify-between items-center"><span class="text-gray-400">عنوان السكن:</span> <span class="font-semibold">بغداد - المنصور</span></div>
+<div class="flex justify-between items-center"><span class="text-gray-400">رقم الهوية:</span> <span class="font-semibold font-display">009283741</span></div>
+</div>
+</div>
+<div class="glass-panel p-6 rounded-3xl card-glow-red">
+<div class="flex items-center gap-3 mb-5 border-b border-glass-border pb-4">
+<span class="material-symbols-outlined text-accent-red">account_balance</span>
+<h2 class="text-lg font-bold">تفاصيل الدفع</h2>
+</div>
+<div class="space-y-4 text-sm">
+<div class="flex justify-between items-center"><span class="text-gray-400">المبلغ الكلي:</span> <span class="font-bold text-primary font-display text-base">٢٥٠,٠٠٠,٠٠٠ د.ع</span></div>
+<div class="flex justify-between items-center"><span class="text-gray-400">المقدمة المدفوعة:</span> <span class="font-semibold font-display">١٠٠,٠٠٠,٠٠٠ د.ع</span></div>
+<div class="flex justify-between items-center"><span class="text-gray-400">عدد الأقساط:</span> <span class="font-semibold font-display">12 قسط</span></div>
+<div class="flex justify-between items-center border-t border-glass-border pt-4 mt-2">
+<span class="text-gray-400">القسط الشهري:</span>
+<span class="font-bold font-display text-primary text-base">١٢,٥٠٠,٠٠٠ د.ع</span>
+</div>
+<div class="flex justify-between items-center"><span class="text-gray-400">تاريخ التسديد:</span> <span class="font-semibold">يوم 1 من كل شهر</span></div>
+</div>
+</div>
+</div>
+<div class="col-span-8 flex flex-col">
+<div class="glass-panel rounded-3xl overflow-hidden flex flex-col h-full border border-white/10">
+<div class="p-6 border-b border-glass-border flex items-center justify-between bg-white/[0.02]">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">calendar_month</span>
+<h2 class="text-lg font-bold text-white">جدول الأقساط الزمني</h2>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 rounded-lg bg-green-500/10 text-green-400 text-[10px] font-bold border border-green-500/20 uppercase">3 مدفوع</span>
+<span class="px-3 py-1 rounded-lg bg-accent-red/10 text-accent-red text-[10px] font-bold border border-accent-red/20 uppercase">1 متأخر</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar">
+<table class="w-full text-right text-sm">
+<thead>
+<tr class="bg-white/[0.05] text-gray-400 text-xs uppercase tracking-widest border-b border-glass-border">
+<th class="px-8 py-5 font-bold text-center w-24">#</th>
+<th class="px-6 py-5 font-bold">تاريخ الاستحقاق</th>
+<th class="px-6 py-5 font-bold">المبلغ المستحق</th>
+<th class="px-8 py-5 font-bold text-left">الحالة</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-glass-border">
+<tr class="hover:bg-white/[0.02] transition-colors">
+<td class="px-8 py-5 text-center font-display text-gray-400">01</td>
+<td class="px-6 py-5 font-display text-white">2023-11-01</td>
+<td class="px-6 py-5 font-display text-primary">١٢,٥٠٠,٠٠٠ د.ع</td>
+<td class="px-8 py-5 text-left">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#00ffcc10] text-[#00ffcc] text-[11px] font-bold border border-[#00ffcc20] shadow-[0_0_10px_rgba(0,255,204,0.1)]">
+<span class="size-1.5 rounded-full bg-[#00ffcc]"></span>مدفوع
+                                        </span>
+</td>
+</tr>
+<tr class="hover:bg-white/[0.02] transition-colors">
+<td class="px-8 py-5 text-center font-display text-gray-400">02</td>
+<td class="px-6 py-5 font-display text-white">2023-12-01</td>
+<td class="px-6 py-5 font-display text-primary">١٢,٥٠٠,٠٠٠ د.ع</td>
+<td class="px-8 py-5 text-left">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#00ffcc10] text-[#00ffcc] text-[11px] font-bold border border-[#00ffcc20] shadow-[0_0_10px_rgba(0,255,204,0.1)]">
+<span class="size-1.5 rounded-full bg-[#00ffcc]"></span>مدفوع
+                                        </span>
+</td>
+</tr>
+<tr class="hover:bg-white/[0.02] transition-colors">
+<td class="px-8 py-5 text-center font-display text-gray-400">03</td>
+<td class="px-6 py-5 font-display text-white">2024-01-01</td>
+<td class="px-6 py-5 font-display text-primary">١٢,٥٠٠,٠٠٠ د.ع</td>
+<td class="px-8 py-5 text-left">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#00ffcc10] text-[#00ffcc] text-[11px] font-bold border border-[#00ffcc20] shadow-[0_0_10px_rgba(0,255,204,0.1)]">
+<span class="size-1.5 rounded-full bg-[#00ffcc]"></span>مدفوع
+                                        </span>
+</td>
+</tr>
+<tr class="bg-accent-red/5 border-x-2 border-x-accent-red/30">
+<td class="px-8 py-5 text-center font-display font-bold text-accent-red">04</td>
+<td class="px-6 py-5 font-display font-bold text-white">2024-02-01</td>
+<td class="px-6 py-5 font-display font-bold text-accent-red">١٢,٥٠٠,٠٠٠ د.ع</td>
+<td class="px-8 py-5 text-left">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-red/20 text-accent-red text-[11px] font-bold border border-accent-red/40 shadow-[0_0_15px_rgba(242,61,61,0.2)]">
+<span class="size-1.5 rounded-full bg-accent-red animate-pulse"></span>متأخر عن السداد
+                                        </span>
+</td>
+</tr>
+<tr class="hover:bg-white/[0.02] transition-colors">
+<td class="px-8 py-5 text-center font-display text-gray-500">05</td>
+<td class="px-6 py-5 font-display text-white/80">2024-03-01</td>
+<td class="px-6 py-5 font-display text-primary/80">١٢,٥٠٠,٠٠٠ د.ع</td>
+<td class="px-8 py-5 text-left">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 text-gray-500 text-[11px] font-bold border border-glass-border">
+<span class="size-1.5 rounded-full bg-gray-600"></span>قيد الانتظار
+                                        </span>
+</td>
+</tr>
+<tr class="hover:bg-white/[0.02] transition-colors">
+<td class="px-8 py-5 text-center font-display text-gray-500">06</td>
+<td class="px-6 py-5 font-display text-white/80">2024-04-01</td>
+<td class="px-6 py-5 font-display text-primary/80">١٢,٥٠٠,٠٠٠ د.ع</td>
+<td class="px-8 py-5 text-left">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 text-gray-500 text-[11px] font-bold border border-glass-border">
+<span class="size-1.5 rounded-full bg-gray-600"></span>قيد الانتظار
+                                        </span>
+</td>
+</tr>
+<tr class="hover:bg-white/[0.02] transition-colors">
+<td class="px-8 py-5 text-center font-display text-gray-500">07</td>
+<td class="px-6 py-5 font-display text-white/80">2024-05-01</td>
+<td class="px-6 py-5 font-display text-primary/80">١٢,٥٠٠,٠٠٠ د.ع</td>
+<td class="px-8 py-5 text-left">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 text-gray-500 text-[11px] font-bold border border-glass-border">
+<span class="size-1.5 rounded-full bg-gray-600"></span>قيد الانتظار
+                                        </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="py-10 text-center text-white/20 text-xs">
+            © 2024 جميع الحقوق محفوظة - نظام إدارة معارض السيارات الذكي
+        </footer>
+</main>
+<div class="fixed top-[15%] right-[5%] w-80 h-80 bg-primary/10 rounded-full blur-[110px] -z-20 pointer-events-none"></div>
+<div class="fixed bottom-[20%] left-[15%] w-[450px] h-[450px] bg-accent-red/5 rounded-full blur-[130px] -z-20 pointer-events-none"></div>
+
+</body></html>
